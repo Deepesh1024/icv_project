@@ -46,7 +46,19 @@ st.markdown("""
 
 @st.cache_resource
 def load_model_cache():
-    model = load_model("unet_resnet50_model.keras", compile=False)
+    try:
+    # For .keras format
+        model = load_model("unet_resnet50_model.keras")
+    except:
+        try:
+        # For .h5 format
+            model = load_model("unet_resnet50_model.h5")
+        except:
+        # Option 2: If you have a SavedModel format
+            model = TFSMLayer(
+                "unet_resnet50_model",
+                call_endpoint='serving_default'  # You might need to adjust this endpoint name
+            )
     model.compile(
         optimizer=Adam(learning_rate=0.001),
         loss='binary_crossentropy',
