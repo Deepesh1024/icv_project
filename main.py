@@ -10,7 +10,7 @@ import os
 
 # Set page configuration
 st.set_page_config(
-    page_title="Brain Tumor Segmentation",
+    page_title="Segmentation",
     page_icon="🧠",
     layout="wide"
 )
@@ -104,7 +104,7 @@ def create_figure(original, mask, overlay):
     
     # Plot binary mask
     plt.subplot(132)
-    plt.title('Tumor Segmentation Mask', pad=20)
+    plt.title('Segmentation Mask', pad=20)
     plt.imshow(mask, cmap='gray')
     plt.axis('off')
     
@@ -123,7 +123,7 @@ def create_figure(original, mask, overlay):
 
 def main():
     # Header
-    st.markdown("<h1 class='title'>🧠 Brain Tumor Segmentation</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='title'>Segmentation Project</h1>", unsafe_allow_html=True)
     
     # Load model
     with st.spinner('Loading model...'):
@@ -131,7 +131,7 @@ def main():
     
     # File uploader
     st.markdown("### Upload CT Scan Image")
-    uploaded_file = st.file_uploader("Choose a brain CT scan image...", type=['png', 'jpg', 'jpeg', 'webp'])
+    uploaded_file = st.file_uploader("Choose an image...", type=['png', 'jpg', 'jpeg', 'webp'])
     
     if uploaded_file is not None:
         # Display original image
@@ -169,18 +169,11 @@ def main():
     # Add information section
     with st.expander("ℹ️ About this app"):
         st.markdown("""
-        This application uses a U-Net architecture with ResNet50 backbone to perform brain tumor segmentation on CT scan images.
+        This application uses a U-Net architecture with ResNet50 backbone to perform  segmentation on images.
         
         **How to use:**
-        1. Upload a brain CT scan image
-        2. Click 'Generate Segmentation'
-        3. View the results showing:
-           - Original image
-           - Segmentation mask
-           - Overlay visualization
-        4. Download the results if needed
         
-        **Note:** For best results, use clear CT scan images in common formats (PNG, JPG, JPEG, WEBP).
+        **Note:** For best results, use clear  images in common formats (PNG, JPG, JPEG, WEBP).
         """)
 
 if __name__ == "__main__":
