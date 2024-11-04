@@ -43,6 +43,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
 @st.cache_resource
 def load_model_cache():
     model = load_model("unet_resnet50_model.keras", compile=False)
